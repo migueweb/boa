@@ -11,12 +11,19 @@ Each part has its own `README.md` file with more detailed documentation.
 
 ```
 .
-├── backend/             # Express-based API (see backend/README.md)
-├── frontend/            # Vite-based client (see frontend/README.md)
-├── commitlint.config.js # Commitlint configuration
-├── CONTRIBUTING.md      # Contribution guidelines
-├── package.json         # Root configuration and scripts
-└── README.md            # You are here
+├── backend               # Express.js backend application
+├── commitlint.config.js  # Commit linting rules
+├── CONTRIBUTING.md       # Guidelines for contributors
+├── db
+│   ├── base_seeder.sql   # SQL script to populate base/initial data
+│   └── schema.sql        # SQL script defining database schema
+├── docs                  # Documentation and diagrams
+│   └── boa.erm.drawio    # Entity-Relationship Model diagram (draw.io format)
+├── frontend              # Vite + Vanilla JS frontend application
+├── LICENSE               # Open-source license for the project
+├── package.json          # Root-level dependencies and scripts      
+├── pnpm-lock.yaml 
+└── README.md             # You are here 
 ```
 
 ---
@@ -29,15 +36,25 @@ git clone https://github.com/migueweb/boa/
 ```
 ---
 
-## installing dependencies:
+2. Install dependencies:
 ```bash
 npm install --recursive
+```
+
+3. Create database schema:
+```bash
+mysql -u root -p < db/schema.sql
+```
+
+4. Seed database:
+```bash
+mysql -u root -p  < db/base_seeder.sql
 ```
 
 ---
 
 ## Contributing
-Read [CONTRIBUTING.MD](./CONTRIBUTING.md) for more details.
+Read [CONTRIBUTING.MD](.github/CONTRIBUTING.md) for more details.
 
 ---
 
