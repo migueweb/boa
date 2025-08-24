@@ -1,0 +1,29 @@
+import Model from "./model.js";
+
+/**
+ * UserModel
+ * Extends the base Model class and handles operations
+ * specific to the `users` table.
+ */
+class UserModel extends Model {
+  constructor() {
+    // Call the parent constructor with the `users` table and primary key `id`
+    super("users", "id");
+  }
+
+  /**
+   * Find a user by email.
+   * @param {string} email - The user's email.
+   * @returns {Promise<object|null>} The found user object or null if not found.
+   */
+  async getByEmail(email) {
+    const [rows] = await this.pool.execute(
+      `SELECT * FROM ${this.table} WHERE email = ? LIMIT 1`,
+      [email]
+    );
+    return rows[0] || null;
+  }
+}
+
+export default new UserModel(); // export ready-to-use instance
+
