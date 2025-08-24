@@ -35,9 +35,16 @@ export default class AuthenticationService {
 
     req.session.user = {
       id: user.id,
-      email: user.email, // fixed duplicate "id"
+      email: user.email
     };
 
-    res.success(null, "Login successful");
+    const userInfo = {
+      id: user.id,
+      name: user.name,
+      company_id: user.company_id,
+      company_name: user.company_name,
+    }
+
+    res.success({user:userInfo}, "Login successful");
   }
 }
