@@ -1,4 +1,6 @@
+import { da } from "zod/v4/locales";
 import Model from "./model.js";
+import bcrypt from "bcrypt";
 
 /**
  * UserModel
@@ -29,24 +31,13 @@ class UserModel extends Model {
   }
 
 
-  
-  //create admin, validation the email exist
-  async createAdmin({ name, email, username, password, role = "Admin", company_id }) {
+  async createUser(data) {
+    data.password = await bcrypt.hash(data.password, 10)
+
+    this.create(data)
     
-    const existingUser = await this.getByEmail(email);
-    if (existingUser) {
-      throw new Error("El usuario ya existe");
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    //insert user
-    const [result] = await this.pool.execute(
-      `INSERT INTO users (name, email, username, password, role, company_id, created_at, updated_at)
-       VALUES (?, ?, ?, ?, ?, ?, NOW(), NOW())`,
-      [name, email, username, hashedPassword, role, company_id]
-    )
   }
+
 }
 export default new UserModel(); // export ready-to-use instance
 
