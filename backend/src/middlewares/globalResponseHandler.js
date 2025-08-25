@@ -1,14 +1,14 @@
-import { Request, Response, NextFunction } from "express";
+import { request, response } from "express";
 /**
  * Middleware that extends the Express `res` object with
  * standardized response helpers: `res.success` and `res.error`.
  *
- * @param {Request} req - Express request object
- * @param {Response & {
+ * @param {request} req - Express request object
+ * @param {response & {
  *   success?: (data?: any, message?: string, code?: number) => void,
  *   error?: (message?: string, code?: number, details?: any) => void
  * }} res - Express response object (extended with custom methods)
- * @param {NextFunction} next - Express next function
+ * @param {next} next - Express next function
  */
 export default function globalResponseHandler(req, res, next) {
   /**

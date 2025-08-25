@@ -1,11 +1,10 @@
 import { Router } from "express";
 import statusRouter from "./statusRouter.js";
-import globalResponseHandler from "../middlewares/globalResponseHandler.js";
+import AuthenticationRouter from "./authenticationRouter.js";
 
 const router = Router();
 
-router.use(globalResponseHandler) // global response helper
-
 router.use("/status", statusRouter)
+router.use("/auth", AuthenticationRouter)
 
 export default router
