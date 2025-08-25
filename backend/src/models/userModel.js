@@ -27,7 +27,26 @@ class UserModel extends Model {
     );
     return rows[0] || null;
   }
-}
 
+
+  
+  //create admin, validation the email exist
+  async createAdmin({ name, email, username, password, role = "Admin", company_id }) {
+    
+    const existingUser = await this.getByEmail(email);
+    if (existingUser) {
+      throw new Error("El usuario ya existe");
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    //insert user
+    const [result] = await this.pool.execute(
+      `INSERT INTO users (name, email, username, password, role, company_id, created_at, updated_at)
+       VALUES (?, ?, ?, ?, ?, ?, NOW(), NOW())`,
+      [name, email, username, hashedPassword, role, company_id]
+    )
+  }
+}
 export default new UserModel(); // export ready-to-use instance
 
