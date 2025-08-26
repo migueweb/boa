@@ -45,7 +45,7 @@ class Model {
   }
 
   /**Obtener registro por id*/
-  async getById(id){
+  async getById(id) {
     const [rows] = await this.pool.query(`SELECT * FROM ${this.table} WHERE ${this.primaryKey} = ? LIMIT 1`,
       [id]
     );
@@ -53,12 +53,12 @@ class Model {
   }
 
   /**Crear registro */
-  async create(data){
+  async create(data) {
     const [result] = await this.pool.query(`INSERT INTO ${this.table} SET ?`, [data]);
-     return { id: result.insertId, ...data }; // return the id insert into table 
+    return { id: result.insertId, ...data }; // return the id insert into table 
   }
 
-   /** actualizar un registro */
+  /** actualizar un registro */
   async update(id, data) {
     await this.pool.query(
       `UPDATE ${this.table} SET ? WHERE ${this.primaryKey} = ?`,
@@ -75,6 +75,16 @@ class Model {
     );
     return result.affectedRows > 0;
   }
+
+  /** Obtener un registro por una columna específica */
+  async getByColumn(column, value) {
+    const [rows] = await this.pool.query(
+      `SELECT * FROM \`${this.table}\` WHERE \`${column}\` = ? LIMIT 1`,
+      [value]
+    );
+    return rows[0] || null;
+  }
+
 
 }
 
