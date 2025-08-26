@@ -3,27 +3,25 @@ import UserModel from "../models/userModel.js";
 import { request, response } from "express";
 
 /**
- * Service class responsible for handling user authentication logic.
+ * service class responsible for managing the logic of admin creation.
  */
 export default class AdminService {
     /**
-     * Handles user login by verifying credentials against the database.
+     * Manages the creation of admin, validating that the data types are correct.
      *
      * @async
-     * @param {request} req - Express request object containing form in `req.body`.
+     * @param {request} req - Express object containing the user data to be inserted form in `req.body`.
      * @param {response} res - Express response object used to send success or error responses.
-     *
-     * @throws Will send an error response if the email does not exist or the password does not match.
      *
      */
 
     static async create(req, res) {
-        const { email, company_id, role_id } = req.body;
+        const { email, company_id } = req.body;
         const newAdmin = await UserModel.getByEmail(email);
         const companies = await companiesModel.getById(company_id)
 
         if (!companies) {
-            res.error("no existe la company")
+            res.error("the company does not exist")
             return
         }
 
@@ -32,8 +30,18 @@ export default class AdminService {
             return
         }
 
+        req.body.role_id = 2;
+
         await UserModel.createUser(req.body)
-        res.success("user created");
+
+        // confirm exists in db
+        const createdUser = await UserModel.getByEmail(email);
+        if (!createdUser) {
+            res.error("error creating admin");
+            return;
+        }
+
+        res.success(`Admin created`);
 
     }
 }
