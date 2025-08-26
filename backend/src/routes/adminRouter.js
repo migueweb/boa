@@ -12,4 +12,5 @@ const AdminRouter = Router();
 
 AdminRouter.post("/create", authorize(Permissions.USER.CREATE_ADMIN), validate(createUser), AdminService.create);
 
+
 export default AdminRouter;
