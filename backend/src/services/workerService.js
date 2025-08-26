@@ -34,7 +34,7 @@ export default class WorkerServices {
       // Clone the request body and overwrite role_id
       const userData = {
         ...req.body,
-        role_id: 2, // worker role
+        role_id: 3, // worker role
       };
 
       console.log(userData)
