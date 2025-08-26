@@ -5,8 +5,8 @@ import createUser from "../schemas/admin/createSchema.js";
 
 
 
-const createAdmin = Router();
+const AdminRouter = Router();
 
-createAdmin.post("/create",validate(createUser),AdminService.create);
+AdminRouter.post("/create",validate(createUser),AdminService.create);
 
-export default createAdmin;
+export default AdminRouter;

@@ -1,4 +1,3 @@
-import { da } from "zod/v4/locales";
 import Model from "./model.js";
 import bcrypt from "bcrypt";
 
@@ -32,10 +31,11 @@ class UserModel extends Model {
 
 
   async createUser(data) {
+    
     data.password = await bcrypt.hash(data.password, 10)
 
     return await this.create(data)
-    
+
   }
 }
 export default new UserModel(); // export ready-to-use instance

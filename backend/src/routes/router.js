@@ -8,7 +8,8 @@ const router = Router();
 
 router.use("/status", statusRouter)
 router.use("/auth", AuthenticationRouter)
-router.use("/admin",AdminRouter)
-router.use("/worker",WorkerRouter)
+router.use("/admin", AdminRouter)
+router.use("/worker", WorkerRouter)
+
 
 export default router
