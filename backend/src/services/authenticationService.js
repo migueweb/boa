@@ -47,4 +47,23 @@ export default class AuthenticationService {
 
     res.success({user:userInfo}, "Login successful");
   }
+
+  /**
+   * Logs out the authenticated user by destroying the session and clearing the cookie.
+   *
+   * @param {request} req - Express request object
+   * @param {response} res - Express response object
+   * @returns {void}
+   */
+  static logout(req, res) {
+
+    req.session.destroy((err) => {
+      if (err) {
+        return res.error(500, "Logout failed");
+      }
+
+      res.clearCookie("connect.sid");
+      return res.success(null,"Logout successfully");
+    });
+  }
 }
