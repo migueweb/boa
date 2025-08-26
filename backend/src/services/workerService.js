@@ -1,6 +1,7 @@
 import companiesModel from "../models/companiesModel.js";
 import UserModel from "../models/userModel.js";
 import { request, response } from "express";
+import { Roles } from "../utils/roles.js"; 
 
 /**
  * Service class responsible for handling user workers.
@@ -34,7 +35,7 @@ export default class WorkerServices {
       // Clone the request body and overwrite role_id
       const userData = {
         ...req.body,
-        role_id: 3, // worker role
+        role_id: Roles.STAFF, // worker role
       };
 
       console.log(userData)

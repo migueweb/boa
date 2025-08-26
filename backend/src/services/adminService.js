@@ -1,6 +1,7 @@
 import companiesModel from "../models/companiesModel.js";
 import UserModel from "../models/userModel.js";
 import { request, response } from "express";
+import { Roles } from "../utils/roles.js"; 
 
 /**
  * Service class responsible for managing the logic of admin creation.
@@ -31,7 +32,7 @@ export default class AdminService {
         return;
       }
 
-      req.body.role_id = 2;
+      req.body.role_id = Roles.ADMIN;
 
       await UserModel.createUser(req.body);
 
