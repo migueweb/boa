@@ -2,11 +2,15 @@ import { Router } from "express";
 import { validate } from "../middlewares/ValidationMiddleware.js";
 import AdminService from "../services/adminService.js";
 import createUser from "../schemas/admin/createSchema.js";
+import { Permissions } from "../utils/roles.js";
+import { authorize } from "../middlewares/AuthorizationMiddleware.js";
 
 
 
-const companyRouter = Router();
 
-companyRouter.post("/create",validate(createUser),AdminService.create);
+const AdminRouter = Router();
 
-export default companyRouter;
+AdminRouter.post("/create", authorize(Permissions.USER.CREATE_ADMIN), validate(createUser), AdminService.create);
+
+
+export default AdminRouter;
