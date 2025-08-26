@@ -1,4 +1,5 @@
 import Model from "./model.js";
+import bcrypt from "bcrypt";
 
 /**
  * UserModel
@@ -27,7 +28,15 @@ class UserModel extends Model {
     );
     return rows[0] || null;
   }
-}
 
+
+  async createUser(data) {
+    
+    data.password = await bcrypt.hash(data.password, 10)
+
+    return await this.create(data)
+
+  }
+}
 export default new UserModel(); // export ready-to-use instance
 
