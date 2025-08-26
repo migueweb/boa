@@ -13,6 +13,7 @@ export default class AdminService {
    * @param {request} req - Express request object containing admin data in `req.body`.
    * @param {response} res - Express response object used to send success or error responses.
    */
+  
   static async create(req, res) {
     try {
       const { email, company_id } = req.body;
