@@ -1,6 +1,8 @@
 import { request, response } from "express";
 import userModel from "../models/userModel.js";
+import permissionModel from "../models/permissionModel.js";
 import bcrypt from "bcrypt";
+
 
 /**
  * Service class responsible for handling user authentication logic.
@@ -19,33 +21,32 @@ export default class AuthenticationService {
   static async login(req, res) {
     const { email, password } = req.body;
 
-    const user = await userModel.getByEmail(email);
+    try {
+      
+      const user = await userModel.getByEmail(email);
 
-    if (!user) {
-      res.error("email not found", 401);
-      return;
+      if (!user) return res.error("email not found", 401);
+
+      const passwordMatch = await bcrypt.compare(password, user.password);
+
+      if (!passwordMatch) return res.error("password do not match", 401);
+
+      req.session.user = { id: user.id };
+
+      const permissions = await permissionModel.getPermissionsByUserId(user.id);
+
+      const userInfo = {
+        name: user.name,
+        company_id: user.company_id,
+        company_name: user.company_name,
+        role: user.role,
+      }
+
+      res.success({user:userInfo, permissions: permissions}, "Login successful");
+
+    } catch (error) {
+      res.error(error.message);
     }
-
-    const passwordMatch = await bcrypt.compare(password, user.password);
-
-    if (!passwordMatch) {
-      res.error("password do not match", 401);
-      return;
-    }
-
-    req.session.user = {
-      id: user.id,
-      email: user.email
-    };
-
-    const userInfo = {
-      id: user.id,
-      name: user.name,
-      company_id: user.company_id,
-      company_name: user.company_name,
-    }
-
-    res.success({user:userInfo}, "Login successful");
   }
 
   /**

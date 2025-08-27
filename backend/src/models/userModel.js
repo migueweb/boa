@@ -19,11 +19,12 @@ class UserModel extends Model {
    */
   async getByEmail(email) {
     const [rows] = await this.pool.execute(
-      `SELECT u.id, u.name, u.password, u.company_id, c.name as company_name
+      `SELECT u.id, u.name, u.password, r.title as role, u.company_id, c.name as company_name
        FROM users as u
        JOIN companies c ON u.company_id = c.id
+       JOIN roles r ON u.role_id = r.id
        WHERE email = ?
-       LIMIT 1`,
+       LIMIT 1;`,
       [email]
     );
     return rows[0] || null;
