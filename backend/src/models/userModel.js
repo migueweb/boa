@@ -50,11 +50,36 @@ class UserModel extends Model {
   }
 
 
+
   async createUser(data) {
     data.password = await bcrypt.hash(data.password, 10);
 
     return await this.create(data);
+
+  async createUser(data) {
+
+    data.password = await bcrypt.hash(data.password, 10)
+
+    return await this.create(data)
   }
+
+  /**
+   * BRING ALL USERS.
+   * @returns {Promise<object|null>} The found user object or null if not found.
+   */
+
+  async getAllAdmins() {
+    const [rows] = await this.pool.execute(
+      `SELECT u.id, u.name, u.email, u.password, u.role_id, r.title as role, u.company_id, c.name as company_name
+     FROM users as u
+     JOIN companies c ON u.company_id = c.id
+     JOIN roles r ON u.role_id = r.id
+     WHERE u.role_id = ${Roles.ADMIN}`
+    );
+    return rows;
+    
+  }
+
 }
 export default new UserModel(); // export ready-to-use instance
 
