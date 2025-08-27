@@ -1,5 +1,6 @@
 import Model from "./model.js";
 import bcrypt from "bcrypt";
+import { Roles } from "../utils/roles.js";
 
 /**
  * UserModel
@@ -30,13 +31,29 @@ class UserModel extends Model {
     return rows[0] || null;
   }
 
+  async getWorkerByCompany(companyId) {
+    const [rows] = await this.pool.execute(
+      `SELECT 
+        u.id, 
+        u.name, 
+        u.email, 
+        u.role_id, 
+        u.company_id, 
+        c.name AS company_name
+     FROM ${this.table} u
+     INNER JOIN companies c ON u.company_id = c.id
+     WHERE u.role_id = ? 
+       AND u.company_id = ?`,
+      [Roles.STAFF, companyId]
+    );
+    return rows;
+  }
+
 
   async createUser(data) {
-    
-    data.password = await bcrypt.hash(data.password, 10)
+    data.password = await bcrypt.hash(data.password, 10);
 
-    return await this.create(data)
-
+    return await this.create(data);
   }
 }
 export default new UserModel(); // export ready-to-use instance
