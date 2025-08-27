@@ -2,11 +2,11 @@ import companiesModel from "../models/companiesModel.js";
 import { request, response } from "express";
 
 /**
- * Service class responsible for managing the logic of admin creation.
+ * Service class responsible for managing the logic of company creation.
  */
 export default class companyService {
     /**
-     * Handles the creation of an admin, validating data and assigning default role.
+     * Handles the creation of an company.
      *
      * @async
      * @param {request} req - Express request object containing admin data in `req.body`.
