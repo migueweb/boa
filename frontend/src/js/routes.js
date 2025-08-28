@@ -1,6 +1,14 @@
 import Home from "./pages/Home.js";
 import Login from "./pages/Login.js";
 
+
+/**
+ * Application route definitions.
+ * 
+ * Keys are URL paths, values are route configurations.
+ * 
+ * @type {Record<string, RouteConfig>}
+ */
 const routes = {
   "/": { view: Home, auth: false },
   "/login": { view: Login, auth: false },
