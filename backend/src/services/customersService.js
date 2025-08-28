@@ -37,4 +37,31 @@ export default class CustomersService {
         }
     }
 
+    /**
+     * manages the service of listing clients depending on your company.
+     * @async
+     * @param {request} req - Express request object containing admin data in `req.body`.
+     * @param {response} res - Express response object used to send success or error responses.
+     * @company_id - company ID
+     */
+
+    static async getCustomer(req, res) {
+        try {
+            const { company_id } = req.body;
+
+            const existingCompany = await companiesModel.getById(company_id);
+            if (!existingCompany) {
+                return res.error("The company does not exist", 404);
+            }
+
+            const customers = await customersModel.getCustomer(company_id);
+            return res.success(customers);
+
+        } catch (error) {
+            console.error("Error get customers:", error);
+            return res.error("Internal server error", 500);
+        }
+    }
+
+
 }
