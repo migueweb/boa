@@ -9,5 +9,6 @@ import { authorize } from "../middlewares/AuthorizationMiddleware.js";
 const companyRouter = Router();
 
 companyRouter.post("/create",authorize(Permissions.COMPANY.CREATE ),validate(createCompany),companyService.createCompany);
+companyRouter.get("/get", authorize(Permissions.COMPANY.READ),companyService.get)
 
 export default companyRouter;

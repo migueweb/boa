@@ -5,27 +5,41 @@ import { request, response } from "express";
  * Service class responsible for managing the logic of company creation.
  */
 export default class companyService {
-    /**
-     * Handles the creation of an company.
-     *
-     * @async
-     * @param {request} req - Express request object containing admin data in `req.body`.
-     * @param {response} res - Express response object used to send success or error responses.
-     */
+  /**
+   * Handles the creation of an company.
+   *
+   * @async
+   * @param {request} req - Express request object containing admin data in `req.body`.
+   * @param {response} res - Express response object used to send success or error responses.
+   */
 
-    static async createCompany(req, res) {
-        const { nit } = req.body;
+  static async get(req, res) {
+    try {
+      const company = await companiesModel.getAll();
 
-        const existingCompany = await companiesModel.getByColumn('nit', nit);
-        
-        if (existingCompany) {
-            res.error("The company with this NIT already exists", 409);
-            return;
-        }
+      return res.json({
+        message: "Workers retrieved successfully",
+        data: company,
+      });
+      
+    } catch (error) {
+      console.error("Error getting workers:", error);
+      return res.error("Internal server error", 500);
+    }
+  }
 
-        await companiesModel.create(req.body);
+  static async createCompany(req, res) {
+    const { nit } = req.body;
 
-        res.success("Company created successfully", 201);
+    const existingCompany = await companiesModel.getByColumn("nit", nit);
+
+    if (existingCompany) {
+      res.error("The company with this NIT already exists", 409);
+      return;
     }
 
+    await companiesModel.create(req.body);
+
+    res.success("Company created successfully", 201);
+  }
 }

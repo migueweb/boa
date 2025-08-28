@@ -56,13 +56,7 @@ class UserModel extends Model {
 
     return await this.create(data);
 
-  async createUser(data) {
-
-    data.password = await bcrypt.hash(data.password, 10)
-
-    return await this.create(data)
   }
-
   /**
    * BRING ALL USERS.
    * @returns {Promise<object|null>} The found user object or null if not found.
