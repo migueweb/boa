@@ -8,7 +8,7 @@ import { authorize } from "../middlewares/AuthorizationMiddleware.js";
 
 const WorkerRouter = Router()
 
-WorkerRouter.post("/create", authorize(Permissions.USER.CREATE_STAFF), validate(createUser), WorkerService.create
-);
+WorkerRouter.post("/create", authorize(Permissions.USER.CREATE_STAFF), validate(createUser), WorkerService.create);
+WorkerRouter.get("/get", authorize(Permissions.USER.READ), WorkerService.get)
 
 export default WorkerRouter
