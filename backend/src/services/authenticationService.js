@@ -25,11 +25,11 @@ export default class AuthenticationService {
       
       const user = await userModel.getByEmail(email);
 
-      if (!user) return res.error("email not found", 401);
+      if (!user) return res.error("Email not found", 401, {errors: [{field:"email", message:"Email not found"}]});
 
       const passwordMatch = await bcrypt.compare(password, user.password);
 
-      if (!passwordMatch) return res.error("password do not match", 401);
+      if (!passwordMatch) return res.error("password do not match", 401, {errors: [{field:"password", message:"Password is wrong"}]});
 
       req.session.user = { id: user.id };
 

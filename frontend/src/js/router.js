@@ -1,9 +1,10 @@
 import Auth from "./auth.js";
+import routes from "./routes.js";
 
 /**
  * SPA Router class for handling navigation, authentication, and authorization.
  */
-export default class Router {
+class Router {
   /**
    * Creates a Router instance.
    * @param {Object.<string, Route>} routes - An object mapping paths to route definitions.
@@ -41,6 +42,11 @@ export default class Router {
       return this.navigate("/login");
     }
 
+    // Middleware: Guest routes (home, login, etc.)
+    if (route.guest && Auth.isAuthenticated()) {
+      return this.navigate("/dashboard");
+    }
+
     // Middleware: Authorization
     if (route.permissions && route.permissions.length > 0) {
       const hasAllPermissions = route.permissions.every(p => Auth.hasPermission(p));
@@ -49,6 +55,9 @@ export default class Router {
       }
     }
 
-    document.querySelector("#app").innerHTML = route.view();
+    const app = document.querySelector("#app");
+    app.innerHTML = route.view();
   }
 }
+
+export default new Router(routes)
