@@ -1,7 +1,9 @@
 import Home from "./pages/Home.js";
+import Login from "./pages/Login.js";
 
 const routes = {
   "/": { view: Home, auth: false },
+  "/login": { view: Login, auth: false },
 /*   "/dashboard": { 
     view: Dashboard, 
     auth: true, 

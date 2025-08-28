@@ -49,6 +49,7 @@ export default class Router {
       }
     }
 
-    document.querySelector("#app").innerHTML = route.view();
+    const app = document.querySelector("#app");
+    app.innerHTML = route.view();
   }
 }
