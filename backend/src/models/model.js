@@ -42,6 +42,7 @@ class Model {
   /**Obtener todos los registros */
   async getAll() {
     const [rows] = await this.pool.query(`SELECT * FROM ${this.table}`);
+     return rows; 
   }
 
   /**Obtener registro por id*/
