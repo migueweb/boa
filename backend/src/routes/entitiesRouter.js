@@ -7,6 +7,6 @@ import { Permissions } from "../utils/roles.js";
 
 const entityRouter = Router();
 
-entityRouter.post("/create",authorize(Permissions.ENTITY.CREATE), validate(createEntity),EntityService.create);
-
+entityRouter.post("/create", authorize(Permissions.ENTITY.CREATE), validate(createEntity), EntityService.create);
+entityRouter.get("/get", authorize(Permissions.ENTITY.READ), EntityService.getEntities);
 export default entityRouter;

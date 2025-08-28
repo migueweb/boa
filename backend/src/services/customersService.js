@@ -42,7 +42,7 @@ export default class CustomersService {
      * @async
      * @param {request} req - Express request object containing admin data in `req.body`.
      * @param {response} res - Express response object used to send success or error responses.
-     * @company_id - company ID
+     * @param {company_id }- company ID
      */
 
     static async getCustomer(req, res) {
