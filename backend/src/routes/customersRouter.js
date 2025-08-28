@@ -8,5 +8,5 @@ import createCustomer from "../schemas/customer/customerSchema.js";
 const customersRouter = Router();
 
 customersRouter.post("/create", authorize(Permissions.CUSTOMER.CREATE),validate(createCustomer), CustomersService.create);
-
+customersRouter.get("/get", authorize(Permissions.CUSTOMER.READ), CustomersService.getCustomer);
 export default customersRouter;

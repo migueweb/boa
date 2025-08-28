@@ -29,6 +29,19 @@ class CustomersModel extends Model {
         const [rows] = await this.pool.execute(query, [document, companyId]);
         return rows.length > 0;
     }
+     /**
+     * We search for clients by filtering your company.
+     * @param {number|string} companyId 
+     * @returns {Promise<boolean>} 
+     */
+    async getCustomer(companyId) {
+        const query = `
+        SELECT cu.id, cu.name, cu.phone, cu.email, cu.document
+        FROM ${this.table} AS cu
+        WHERE cu.company_id = ? `;
+        const [rows] = await this.pool.execute(query, [companyId]);
+        return rows;
+    }
 
 }
 
