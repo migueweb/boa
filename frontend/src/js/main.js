@@ -1,11 +1,8 @@
 import '../css/style.css'
 import loginFormHandler from './handlers/loginFormHandler';
-import Router from './router';
-import routes from './routes';
+import router from './router';
 
 
-
-const router = new Router(routes) // Initiation Router
 const app = document.querySelector("#app")
 
 /**
@@ -19,10 +16,10 @@ document.addEventListener("click", (e) => {
 });
 
 
-app.addEventListener("submit", (e) => {
+app.addEventListener("submit", async (e) => {
   e.preventDefault()
   
-  if (e.target.matches("#loginForm")) return loginFormHandler(e)
+  if (e.target.matches("#loginForm")) return await loginFormHandler(e)
 
   
 })

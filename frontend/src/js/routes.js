@@ -1,5 +1,6 @@
 import Home from "./pages/Home.js";
 import Login from "./pages/Login.js";
+import Dashboard from "./pages/Dashboard.js"
 
 
 /**
@@ -10,13 +11,13 @@ import Login from "./pages/Login.js";
  * @type {Record<string, RouteConfig>}
  */
 const routes = {
-  "/": { view: Home, auth: false },
-  "/login": { view: Login, auth: false },
-/*   "/dashboard": { 
+  "/": { view: Home, auth: false, guest: true },
+  "/login": { view: Login, auth: false, guest: true },
+  "/dashboard": { 
     view: Dashboard, 
-    auth: true, 
-    permissions: ["dashboard_access"] 
-  }, */
+    auth: true,
+    /* permissions: ["dashboard_access"]  */
+  },
   "/404": { view: () => "<h1>404 Not Found</h1>", auth: false },
 };
 
