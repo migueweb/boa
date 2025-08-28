@@ -65,7 +65,7 @@ create table customers(
     id int auto_increment primary key,
     company_id int not null,
     name  varchar(100) not null,
-    phone int not null,
+    phone VARCHAR(20) not null,
     email varchar(200) not null,
     document varchar(100) not null,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

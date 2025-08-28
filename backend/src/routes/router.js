@@ -6,6 +6,7 @@ import AdminRouter from "./adminRouter.js";
 import companyRouter from "./companyRouter.js";
 import entitiesRouter from "./entitiesRouter.js";
 import entityinstance from "./entityInstanceRouter.js";
+import customersRouter from "./customersRouter.js";
 
 const router = Router();
 
@@ -16,5 +17,5 @@ router.use("/worker", WorkerRouter)
 router.use("/company", companyRouter)
 router.use("/entitie", entitiesRouter)
 router.use("/entityinstance", entityinstance)
-
+router.use("/customers", customersRouter)
 export default router
