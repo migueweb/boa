@@ -1,11 +1,8 @@
 import api from "../utils/api";
+import serviceHandler from "../utils/serviceHandler";
 
-export async function getCompanies() {
-    try {
-        const response = await api.get("/companies");
-        return response.data.data; 
-    } catch (error) {
-        console.error("Error fetching companies:", error);
-        return [];
-    }
+export async function getCompanies(data) {
+
+    return await serviceHandler(async () => await api.get("/company/get", data))
+
 }

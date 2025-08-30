@@ -33,7 +33,7 @@ class Router {
    * Loads and renders the current route based on the window location.
    * Handles authentication and permission-based authorization.
    */
-  loadRoute() {
+  async loadRoute() {
     const path = window.location.pathname;
     const route = this.routes[path] || this.routes["/404"];
 
@@ -56,7 +56,8 @@ class Router {
     }
 
     const app = document.querySelector("#app");
-    app.innerHTML = route.view();
+    app.innerHTML = await route.view();
+    window.HSStaticMethods.autoInit()
   }
 }
 

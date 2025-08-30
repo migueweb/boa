@@ -1,4 +1,5 @@
 import '../css/style.css'
+import adminHandler from './handlers/createAdminFormHandler';
 import loginFormHandler from './handlers/loginFormHandler';
 import router from './router';
 
@@ -20,7 +21,7 @@ app.addEventListener("submit", async (e) => {
   e.preventDefault()
   
   if (e.target.matches("#loginForm")) return await loginFormHandler(e)
-
+  if (e.target.matches("#CreateAdmin")) return adminHandler()
   
 })
 

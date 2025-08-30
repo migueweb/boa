@@ -19,7 +19,7 @@ const routes = {
     auth: true,
     /* permissions: ["dashboard_access"]  */
   },
-  "/createadmin": { view: CreateAdmin},
+  "/user": { view: CreateAdmin, auth: true},
   "/404": { view: () => "<h1>404 Not Found</h1>", auth: false },
 };
 

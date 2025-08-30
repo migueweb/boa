@@ -17,7 +17,7 @@ export default class companyService {
     try {
       const company = await companiesModel.getAll();
 
-      return res.json({
+      return res.success({
         message: "Workers retrieved successfully",
         data: company,
       });
