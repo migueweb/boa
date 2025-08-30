@@ -1,5 +1,7 @@
-export default function () {
-  return `
-    <h1>Dashboard</h1>
-  `
+import Dashboard from "../components/Dashboard";
+
+export default function DashboardPage() {
+  return Dashboard(`
+    <h1 class="font-bold text-xl">Dashboard</h1>  
+  `)
 }
