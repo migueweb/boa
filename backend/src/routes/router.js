@@ -9,6 +9,7 @@ import entityinstance from "./entityInstanceRouter.js";
 import customersRouter from "./customersRouter.js";
 import reservationsRouter from "./reservationRouter.js";
 import rolesRouter from "./rolesRouter.js";
+import userRouter from "./userRouter.js";
 
 const router = Router();
 
@@ -22,4 +23,5 @@ router.use("/entityinstance", entityinstance)
 router.use("/customers", customersRouter)
 router.use("/reservations",reservationsRouter)
 router.use("/role",rolesRouter)
+router.use("/user",userRouter)
 export default router

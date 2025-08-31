@@ -1,7 +1,8 @@
 import Home from "./pages/Home.js";
 import Login from "./pages/Login.js";
 import Dashboard from "./pages/Dashboard.js"
-import CreateAdmin from "./pages/createAdmin.js"
+import CreateUser from "./pages/createUser.js";
+
 
 
 /**
@@ -19,7 +20,7 @@ const routes = {
     auth: true,
     /* permissions: ["dashboard_access"]  */
   },
-  "/user": { view: CreateAdmin, auth: true},
+  "/user": { view: CreateUser, auth: true},
   "/404": { view: () => "<h1>404 Not Found</h1>", auth: false },
 };
 
