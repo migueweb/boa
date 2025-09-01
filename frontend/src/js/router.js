@@ -58,10 +58,10 @@ class Router {
     }
 
 
-  const app = document.querySelector("#app");
-app.innerHTML = await route.view();
-window.HSStaticMethods.autoInit();
+    const app = document.querySelector("#app");
+    app.innerHTML = await route.view();
+    window.HSStaticMethods.autoInit();
 
-}
+  }
 }
 export default new Router(routes);
