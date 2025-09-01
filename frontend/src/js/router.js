@@ -24,9 +24,9 @@ class Router {
    * Navigates to a given path and loads the corresponding route.
    * @param {string} path - The target path to navigate to.
    */
-  navigate(path) {
+  async navigate(path) {
     history.pushState({}, "", path);
-    this.loadRoute();
+    await this.loadRoute();
   }
 
   /**
@@ -49,16 +49,19 @@ class Router {
 
     // Middleware: Authorization
     if (route.permissions && route.permissions.length > 0) {
-      const hasAllPermissions = route.permissions.every(p => Auth.hasPermission(p));
+      const hasAllPermissions = route.permissions.every((p) =>
+        Auth.hasPermission(p)
+      );
       if (!hasAllPermissions) {
         return this.navigate("/");
       }
     }
 
-    const app = document.querySelector("#app");
-    app.innerHTML = await route.view();
-    window.HSStaticMethods.autoInit()
-  }
-}
 
-export default new Router(routes)
+  const app = document.querySelector("#app");
+app.innerHTML = await route.view();
+window.HSStaticMethods.autoInit();
+
+}
+}
+export default new Router(routes);

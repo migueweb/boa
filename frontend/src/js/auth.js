@@ -54,6 +54,23 @@ const Auth = {
     }
   },
 
+    /**
+   * Retrieves the current user's permissions from localStorage.
+   * 
+   * @returns {string[]} Array of permission strings, or an empty array if none.
+   * 
+   * @example
+   * const perms = Auth.getPermissions();
+   * // => ["reservation_read"]
+   */
+  getUser: () => {
+    try {
+      return JSON.parse(localStorage.getItem("user")) || [];
+    } catch {
+      return null;
+    }
+  },
+
 
   /**
    * Checks if the current user has a specific permission.
