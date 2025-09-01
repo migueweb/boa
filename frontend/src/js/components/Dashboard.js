@@ -1,8 +1,8 @@
 // Dashboard.js (no cambia nada aquí, solo sidebar)
-import Auth from "../auth"
+import Auth from "../auth";
 
 export default function Dashboard(children) {
-  const user = Auth.getUser()
+  const user = Auth.getUser();
 
   return `
   <aside id="collapsible-sidebar"
@@ -22,6 +22,12 @@ export default function Dashboard(children) {
             ${user.role === "Admin" ? "Staff" : "Users"}
           </a>
         </li>
+         <li>
+            <a href="/reservations">
+            <span class="icon-[tabler--calendar-event] size-5"></span>
+             ${user.role === "Admin" ? "Staff" : "Reservations"}
+            </a>
+          </li>
       </ul>
     </div>
   </aside>
@@ -51,5 +57,5 @@ export default function Dashboard(children) {
       ${children}
     </main>
   </div>
-`
+`;
 }
