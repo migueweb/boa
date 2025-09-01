@@ -39,7 +39,8 @@ class ReservationModel extends Model {
       WHERE c.document = ?;
     `;
 
-    return await this.pool.query(query, [document_customer]);
+    const [result] =  await this.pool.query(query, [document_customer]);
+    return result
   }
 }
 

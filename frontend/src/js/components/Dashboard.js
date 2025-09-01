@@ -1,4 +1,4 @@
-
+// Dashboard.js (no cambia nada aquí, solo sidebar)
 import Auth from "../auth"
 
 export default function Dashboard(children) {
