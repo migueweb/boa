@@ -3,13 +3,12 @@ import { createUserSchema } from "../schemas/userSchema";
 import { formDataToObject, validateForm } from "../utils/validateForm";
 import showErrors from "../utils/showErrors";
 import resetErrors from "../utils/resetErrors";
-
+import { renderUserTable } from "../pages/user";
 
 export default async function userFormHandler(e) {
   e.preventDefault();
 
   const form = e.target;
-
 
   resetErrors(formDataToObject(form));
 
@@ -31,6 +30,8 @@ export default async function userFormHandler(e) {
 
   alert("User created successfully!");
 
-
   form.reset();
+
+  const newRows = await renderUserTable();
+  document.getElementById("user-table-container").innerHTML = newRows;
 }

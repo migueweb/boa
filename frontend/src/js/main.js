@@ -22,9 +22,6 @@ app.addEventListener("submit", async (e) => {
   
   if (e.target.matches("#loginForm")) return await loginFormHandler(e)
   if (e.target.matches("#CreateUser")) return await userHandler(e); 
-  if (e.target.matches("#login1")) ; 
-  
-
   
 })
 
