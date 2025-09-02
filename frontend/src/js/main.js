@@ -1,19 +1,21 @@
 import '../css/style.css'
+
 import userHandler from './handlers/userFormHandler';
+import anchorHandler from './handlers/anchorHandler';
 import loginFormHandler from './handlers/loginFormHandler';
+import logoutHandler from './handlers/logoutHandler';
 import router from './router';
 
 
 const app = document.querySelector("#app")
 
 /**
- * Managing anchors [data-route] for spa navigation
+ * Managing anchors for spa navigation
 */
 document.addEventListener("click", (e) => {
-  if (e.target.matches("a")) {
-    e.preventDefault();
-    router.navigate(e.target.getAttribute("href"));
-  }
+  e.preventDefault()
+  if (e.target.matches("a")) return anchorHandler(e)
+  if (e.target.matches("#logoutBtn")) return logoutHandler()
 });
 
 
@@ -22,9 +24,6 @@ app.addEventListener("submit", async (e) => {
   
   if (e.target.matches("#loginForm")) return await loginFormHandler(e)
   if (e.target.matches("#CreateUser")) return await userHandler(e); 
-  if (e.target.matches("#login1")) ; 
-  
-
   
 })
 

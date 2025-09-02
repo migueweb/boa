@@ -1,8 +1,17 @@
-
+// Dashboard.js (no cambia nada aquí, solo sidebar)
 import Auth from "../auth"
 
 export default function Dashboard(children) {
   const user = Auth.getUser()
+  let userRoleIcon
+
+  if(user.role === "Super Administrator") {
+    userRoleIcon = "tabler--crown"
+  } else if (user.role === "Admin") {
+    userRoleIcon = "tabler--shield"
+  } else {
+    userRoleIcon = "tabler--user"
+  }
 
   return `
   <aside id="collapsible-sidebar"
@@ -38,13 +47,15 @@ export default function Dashboard(children) {
       </div>
       <div class="navbar-center flex items-center">
         <a class="link text-base-content link-neutral text-xl font-bold no-underline" href="#">
-          Boa system
+          Boa ecosystem
         </a>
       </div>
       <div class="navbar-end items-center gap-4 ">
+        <span class=" badge badge-soft badge-secondary">
+          <span class="icon-[${userRoleIcon}] size-5"></span>
+        </span>
         <span class="badge badge-soft">${user.name}</span>
-        <span class="badge badge-soft badge-secondary">${user.role}</span>
-        <button class="btn btn-outline btn-primary waves waves-primary">Log out</button>
+        <button class="btn btn-outline btn-primary waves waves-primary" id="logoutBtn">Log out</button>
       </div>
     </nav>
     <main class="p-2 w-full">

@@ -3,11 +3,11 @@ import { request, response } from "express";
 import userModel from "../models/userModel.js";
 
 /**
- * Service class responsible for managing the logic of creation.
+ * Service class responsible for managing the logic of company creation.
  */
-export default class UserService {
+export default class UsersService {
   /**
-   * Handles the creation of an user.
+   * Handles the creation of an users.
    *
    * @async
    * @param {request} req - Express request object containing admin data in `req.body`.
@@ -78,6 +78,20 @@ export default class UserService {
       console.error("AdminService  error:", error);
       // console.error(error.stack);
       res.error("Internal server error", 500);
+
+  static async get(req, res) {
+    try {
+      const users = await userModel.getAll();
+
+      return res.success({
+        message: "users retrieved successfully",
+        data: users,
+      });
+      
+    } catch (error) {
+      console.error("Error getting users:", error);
+      return res.error("Internal server error", 500);
+
     }
   }
 

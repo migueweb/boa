@@ -16,7 +16,7 @@ export default class ReservationService {
 
   static async get(req, res) {
     try {
-      const { document_customer } = req.body;
+      const { document_customer } = req.query;
 
       if (!document_customer) {
         return res.error("document_customer is required", 400);
@@ -31,10 +31,7 @@ export default class ReservationService {
         return res.error("No reservations found for this customer", 404);
       }
 
-      return res.json({
-        message: "Workers retrieved successfully",
-        reservations: reservations,
-      });
+      return res.success({  reservations: reservations, message: "Workers retrieved successfully" });
 
     } catch (error) {
       console.error("Error fetching reservations:", error);
@@ -43,9 +40,9 @@ export default class ReservationService {
   }
 
   static async create(req, res) {
+    debugger
     try {
-      const { user_id, customer_id, entity_instance_id, reservation_state_id } =
-        req.body;
+      const { user_id, customer_id, entity_instance_id, reservation_state_id } = req.body;
 
       // Entities to validate before creating reservation
       const validations = [
@@ -87,6 +84,7 @@ export default class ReservationService {
       }
 
       return res.success("Reservation created successfully", 201);
+      
     } catch (error) {
       console.error("Error creating reservation:", error);
       return res.error("Internal server error", 500);

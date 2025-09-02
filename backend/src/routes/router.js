@@ -10,6 +10,9 @@ import customersRouter from "./customersRouter.js";
 import reservationsRouter from "./reservationRouter.js";
 import rolesRouter from "./rolesRouter.js";
 import userRouter from "./userRouter.js";
+import usersRouter from "./usersRouter.js";
+import reservationsStateRouter from "./reservationStateRouter.js"
+
 
 const router = Router();
 
@@ -24,4 +27,7 @@ router.use("/customers", customersRouter)
 router.use("/reservations",reservationsRouter)
 router.use("/role",rolesRouter)
 router.use("/user",userRouter)
+router.use("/users", usersRouter)
+router.use("/reservations-state", reservationsStateRouter)
+
 export default router
