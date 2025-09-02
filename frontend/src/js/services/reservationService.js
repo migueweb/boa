@@ -6,3 +6,7 @@ import serviceHandler from "../utils/serviceHandler";
 export async function reservationService(params) {
   return await serviceHandler(async () => await api.get("/reservations/get", { params }) );
 }
+
+export async function createReservation(data) {
+  return await serviceHandler(() => api.post("/reservations/create", data));
+}

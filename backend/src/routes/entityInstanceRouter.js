@@ -9,6 +9,7 @@ import createInstance from "../schemas/entity/entityInstanceSchema.js";
 const entityinstance = Router();
 
 entityinstance.post("/create", authorize(Permissions.ENTITY_INSTANCE.CREATE), validate(createInstance), entityInstanceService.createEntityInstance);
+entityinstance.get("/get", authorize(Permissions.ENTITY_INSTANCE.READ),entityInstanceService.getEntitiesInstance);
 
 
 export default entityinstance;
