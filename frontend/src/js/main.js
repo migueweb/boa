@@ -1,5 +1,7 @@
 import '../css/style.css'
+import anchorHandler from './handlers/anchorHandler';
 import loginFormHandler from './handlers/loginFormHandler';
+import logoutHandler from './handlers/logoutHandler';
 import router from './router';
 
 
@@ -9,10 +11,8 @@ const app = document.querySelector("#app")
  * Managing anchors [data-route] for spa navigation
 */
 document.addEventListener("click", (e) => {
-  if (e.target.matches("a")) {
-    e.preventDefault();
-    router.navigate(e.target.getAttribute("href"));
-  }
+  if (e.target.matches("a")) return anchorHandler(e)
+  if (e.target.matches("#logoutBtn")) return logoutHandler()
 });
 
 
