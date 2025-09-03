@@ -3,6 +3,7 @@ import anchorHandler from './handlers/anchorHandler';
 import loginFormHandler from './handlers/loginFormHandler';
 import logoutHandler from './handlers/logoutHandler';
 import router from './router';
+import userFormHandler from "./handlers/userFormHandler"
 
 
 const app = document.querySelector("#app")
@@ -16,9 +17,10 @@ document.addEventListener("click", (e) => {
 
 app.addEventListener("submit", async (e) => {
   e.preventDefault()
-  
-  if (e.target.matches("#loginForm")) return await loginFormHandler(e) // login handler
-  
+
+  if (e.target.matches("#loginForm")) return await loginFormHandler(e)
+  if (e.target.matches("#CreateUser")) return await userFormHandler(e)
+
 })
 
 router.loadRoute();
