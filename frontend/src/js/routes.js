@@ -17,7 +17,7 @@ const routes = {
   "/login": { view: Login, auth: false, guest: true },
   "/dashboard": { view: Dashboard, auth: true, /* permissions: ["dashboard_access"]  */},
   "/reservations": {view: ReservationsPage, auth: true },
-  "/user": { view: UserDashboard, auth: true},
+  "/users": { view: UserDashboard, auth: true, permissions: ["user_create", "user_create_admin", "user_create_staff", "user_delete", "user_read","user_update"]},
   "/404": { view: () => "<h1>404 Not Found</h1>", auth: false },
 };
 

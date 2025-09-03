@@ -1,7 +1,10 @@
 // Dashboard.js (no cambia nada aquí, solo sidebar)
 import Auth from "../auth"
+import renderIfAllowed from "../utils/renderIfAllowed"
 
 export default function Dashboard(children) {
+
+  const userPermissions = ["user_create", "user_create_admin", "user_create_staff", "user_delete", "user_read","user_update"];
   const user = Auth.getUser()
   let userRoleIcon
 
@@ -25,10 +28,20 @@ export default function Dashboard(children) {
             Home
           </a>
         </li>
+       
+        ${renderIfAllowed(`
+          <li>
+            <a href="/users">
+              <span class="icon-[tabler--users] size-5"></span>
+              ${user.role === "Admin" ? "Staff" : "Users"}
+            </a>
+          </li>
+        `,userPermissions)}
+        
         <li>
-          <a href="#">
-            <span class="icon-[tabler--users] size-5"></span>
-            ${user.role === "Admin" ? "Staff" : "Users"}
+          <a href="/reservations">
+            <span class="icon-[tabler--reserved-line] size-5"></span>
+            Reservations
           </a>
         </li>
       </ul>
