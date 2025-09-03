@@ -42,7 +42,7 @@ export default class EntityService {
 
     static async getEntities(req, res) {
         try {
-            const { company_id } = req.body;
+            const { company_id } = req.query;
 
             const existingCompany = await companiesModel.getById(company_id);
             if (!existingCompany) {

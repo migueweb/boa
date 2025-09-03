@@ -31,8 +31,10 @@ export default class ReservationService {
         return res.error("No reservations found for this customer", 404);
       }
 
-      return res.success({  reservations: reservations, message: "Workers retrieved successfully" });
-
+      return res.success({
+        reservations: reservations,
+        message: "Workers retrieved successfully",
+      });
     } catch (error) {
       console.error("Error fetching reservations:", error);
       return res.error("Internal server error", 500);
@@ -40,9 +42,10 @@ export default class ReservationService {
   }
 
   static async create(req, res) {
-    debugger
+    debugger;
     try {
-      const { user_id, customer_id, entity_instance_id, reservation_state_id } = req.body;
+      const { user_id, customer_id, entity_instance_id, reservation_state_id } =
+        req.body;
 
       // Entities to validate before creating reservation
       const validations = [
@@ -84,9 +87,31 @@ export default class ReservationService {
       }
 
       return res.success("Reservation created successfully", 201);
-      
     } catch (error) {
       console.error("Error creating reservation:", error);
+      return res.error("Internal server error", 500);
+    }
+  }
+
+  static async update(req, res) {
+    try {
+      const { id } = req.params; // viene de la URL: /reservations/:id
+      const data = req.body;
+
+      // validar que exista la reservación
+      const existing = await reservationsModel.getById(id);
+      if (!existing) {
+        return res.error("Reservation not found", 404);
+      }
+
+      // actualizar
+      const updatedReservation = await reservationsModel.update(id, data);
+
+      return res.success({
+        reservation: updatedReservation,
+        message: "Reservation updated successfully",
+      });
+    } catch (error) {
       return res.error("Internal server error", 500);
     }
   }
