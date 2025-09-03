@@ -1,6 +1,6 @@
 # BOA - SPA client
 
-## 📌 Introduction
+## Introduction
 
 This project is a **Single Page Application (SPA)** built with **Vite** as the bundler.  
 It follows a **modular architecture** where responsibilities are split into distinct folders (routing, services, handlers, components, schemas, and utilities).  
@@ -17,7 +17,7 @@ The main goals of the project are:
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 The folder tree up to 3 levels:
 
@@ -46,7 +46,7 @@ The folder tree up to 3 levels:
 
 ---
 
-## 📦 Dependencies
+## Dependencies
 
 ### Dev Dependencies
 - **vite** – Fast bundler and dev server.  
