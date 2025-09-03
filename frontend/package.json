@@ -9,6 +9,15 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^7.1.2"
+    "@iconify-json/tabler": "^1.2.22",
+    "@iconify/tailwind4": "^1.0.6",
+    "vite": "7.1.2"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "4.1.12",
+    "axios": "^1.11.0",
+    "flyonui": "^2.4.0",
+    "tailwindcss": "4.1.12",
+    "zod": "^4.1.4"
   }
 }
