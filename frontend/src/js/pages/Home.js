@@ -15,8 +15,7 @@ return `
           <a href="#contact" class="text-gray-500 hover:text-gray-950 transition-colors">Contact</a>
           <a href="/login"
             class="px-4 py-2 rounded-md bg-gray-950 text-white hover:bg-gray-800 transition-all inline-flex items-center gap-2 font-medium text-sm">
-            <span class="icon-[tabler--rocket] w-6 h-6"></span>
-            Get Started</a>
+            Log in</a>
         </div>
       </div>
     </div>
@@ -134,13 +133,9 @@ return `
   <section id="tools" class="py-20">
     <div class="max-w-7xl mx-auto px-4">
       <div class="text-center mb-16">
-        <div
-          class="inline-flex items-center gap-2 px-3 py-1 bg-transparent border border-gray-200 rounded-full text-sm font-medium mb-6">
-          Coming Soon Release</div>
         <h2 class="text-3xl md:text-4xl font-bold mb-4">Our First Artifact</h2>
         <p class="text-xl text-gray-500 max-w-2xl mx-auto">Start your journey with our powerful
-          reservation system -
-          launching soon</p>
+          reservation system</p>
       </div>
 
       <div
@@ -151,7 +146,7 @@ return `
           </div>
           <h3 class="text-2xl font-semibold mb-2">Reservation System</h3>
           <p class="text-lg text-gray-500">
-            Complete reservation and schedule management for any type of business - launching soon
+            Complete reservation and schedule management for any type of business
           </p>
         </div>
         <div class="grid gap-8 md:grid-cols-2">
@@ -170,10 +165,6 @@ return `
                 <span class="icon-[tabler--calendar-stats] w-5 h-5 text-gray-950"></span>
                 Flexible scheduling options
               </li>
-              <li class="flex items-center gap-2 text-gray-500">
-                <span class="icon-[tabler--bell] w-5 h-5 text-gray-950"></span>
-                Automated notifications
-              </li>
             </ul>
           </div>
           <div>
@@ -189,16 +180,10 @@ return `
           </div>
         </div>
         <div class="mt-8 text-center flex gap-4 justify-center">
-          <button
-            class="px-8 py-3 rounded-md bg-gray-100 text-gray-950 hover:bg-gray-200 transition-all inline-flex items-center gap-2 font-medium text-lg opacity-50 cursor-not-allowed"
-            disabled>
-            Coming Soon
-            <span class="icon-[tabler--arrow-right] w-5 h-5"></span>
-          </button>
           <a href="#"
             class="px-8 py-3 rounded-md bg-transparent text-gray-950 border border-gray-200 hover:bg-gray-50 transition-all inline-flex items-center gap-2 font-medium text-lg">
-            Get Notified
-            <span class="icon-[tabler--bell] w-6 h-6"></span>
+            Get on board
+            <span class="icon-[tabler--arrow-badge-right] w-6 h-6"></span>
           </a>
         </div>
       </div>
